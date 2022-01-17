@@ -28,8 +28,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
-library UNISIM;
-use UNISIM.VComponents.all;
+
 
 entity TOP is
     Port ( clk : in STD_LOGIC;
@@ -124,7 +123,7 @@ COMPONENT Display_refresh
 END COMPONENT;
 		
 
--- SEÑALES
+-- SEÃ‘ALES
 SIGNAL P_ACT: STD_LOGIC_VECTOR (2 DOWNTO 0);
 SIGNAL P_DEST: STD_LOGIC_VECTOR (2 DOWNTO 0);
 SIGNAL PISO_ACT_FSM: STD_LOGIC_VECTOR (2 DOWNTO 0);
