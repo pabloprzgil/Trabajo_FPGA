@@ -1,0 +1,38 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+use IEEE.NUMERIC_STD.ALL;
+
+
+entity MOTOR_tb is
+
+end MOTOR_tb;
+
+architecture Behavioral of MOTOR_tb is
+constant K: time := 100 ns;
+SIGNAL clk: STD_LOGIC:='0';
+SIGNAL sensor: STD_LOGIC_VECTOR (1 DOWNTO 0):="00";
+SIGNAL s1: STD_LOGIC:='0';
+SIGNAL s2: STD_LOGIC:='0';
+
+COMPONENT MOTOR 
+    Port ( clock : in STD_LOGIC;
+           SENSOR_MOTOR : in STD_LOGIC_VECTOR (1 downto 0);
+           LED1 : out STD_LOGIC;
+           LED2 : out STD_LOGIC);
+end COMPONENT;
+
+begin
+
+mot: MOTOR
+    PORT MAP(
+        clock => clk,
+        SENSOR_MOTOR => sensor, 
+        LED1 => s1,
+        LED2 => s2
+        );
+        
+clk <= not clk after 0.5 * K;        
+sensor <= "01" after 1 * K, "10" after 3 * K;
+ 
+end Behavioral;
