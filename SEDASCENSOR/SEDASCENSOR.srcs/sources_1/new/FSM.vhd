@@ -67,7 +67,7 @@ SINCRONIZACION_RELOJ: PROCESS (clock,RST)
 	       P_D <= 1;
 	       P_A <= 1;
 	             
-	 ELSIF (clock'event and clock='1') AND RST='0' THEN
+	 ELSIF (clock'event and clock='1')  THEN
 		P_A <= to_integer(unsigned(piso_actual));  	   	     
 	    DIS_ACT <= STD_LOGIC_VECTOR(TO_UNSIGNED(P_A, DIS_DEST'LENGTH));
 	    state <= next_state;
@@ -87,7 +87,7 @@ NEXT_STATE_DECODE: PROCESS (clock, state, P_D, P_A)
      when S1 =>
          IF (P_D-P_A=0 ) THEN		-- planta deseada		
                     next_state <= S1;	    --estado de reposo    
-         ELSIF (P_D-P_A>0) THEN   -- la planta deseada est· arriba
+         ELSIF (P_D-P_A>0) THEN   -- la planta deseada est√° arriba
                     next_state <= S2;	-- estado subiendo
          ELSIF (P_D-P_A<0) THEN     -- planta deseada esta abajo
                     next_state <= S3;   -- estado bajando
@@ -108,7 +108,7 @@ Estado_del_motor: PROCESS (clock, state )
 begin       
         case state is 
         when S1=>
-                MOTOR <= "00";		-- Hay dos seÒales motor, porque MOTOR es una seÒal de la arquitectura que usamos para hacer comparaciones
+                MOTOR <= "00";		-- Hay dos se√±ales motor, porque MOTOR es una se√±al de la arquitectura que usamos para hacer comparaciones
                 motor_out <= "00";	-- con la salida no podriamos hacer comparaciones
                 LED0 <= '1';
                 LED_P1 <= '1';
