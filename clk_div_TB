@@ -1,0 +1,36 @@
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+
+
+entity CLK_DIV_tb is
+
+end CLK_DIV_tb;
+
+architecture Behavioral of  CLK_DIV_tb is
+
+COMPONENT CLK_DIV
+    Generic (
+             frec2: integer:=500000  );
+             
+    Port ( clock : in STD_LOGIC;
+           clock_200Hz: out STD_LOGIC);
+END COMPONENT;
+
+SIGNAL clk: STD_LOGIC:='0';
+SIGNAL clk_200Hz: STD_LOGIC:='0';
+constant K: time := 100 ns;
+constant Q: time := 10000 ns;
+
+begin
+
+div: CLK_DIV
+    PORT MAP(
+        clock => clk,
+        clock_200Hz => clk_200Hz
+        );
+
+clk <= not clk after 0.5 * K; 
+
+end Behavioral;
